@@ -38,7 +38,7 @@ Used to register the ZPL classes as components in the IDE when used in a package
 
 ## Supported ZPL commands
 
-> - **^A  
+> - ^A  
 > - ^B3  
 > - ^BC  
 > - ^BQ  
@@ -69,7 +69,7 @@ Used to register the ZPL classes as components in the IDE when used in a package
 > - ^PW  
 > - ^XA  
 > - ^XB  
-> - ^XZ**  
+> - ^XZ
  
 ## Demo usage
 
