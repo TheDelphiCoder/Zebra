@@ -73,4 +73,49 @@ Used to register the ZPL classes as components in the IDE when used in a package
  
 ## Demo usage
 
-To be continued...
+```
+uses
+  // [...]
+  ZPL2, ZPL2Barcodes, ZPL2Label;
+  
+var
+  zpl: TZPL2Label;
+begin
+  zpl := TZPL2Label.Create;
+  
+  try
+    case rdogrpLabelItems.ItemIndex of
+      0: ZPL2LabelItem := CreateBarcodeCode128(0, 0, 'Code128', 30);
+      1: ZPL2LabelItem := CreateBarcodeCode39(0, 0, 'Code39', 30);
+      2: ZPL2LabelItem := CreateBarcodeDatamatrix(0, 0, 'Datamatrix');
+      3: ZPL2LabelItem := CreateBarcodeQR(0, 0, 'QR Code');
+      4: ZPL2LabelItem := CreateGraphicBox(0, 0, 30, 30);
+      5: ZPL2LabelItem := CreateGraphicDiagonalLine(0, 0, 30, 30);
+      6: ZPL2LabelItem := CreateGraphicCircle(0, 0, 30);
+      7: ZPL2LabelItem := CreateGraphicEllipse(0, 0, 40, 20);
+      8:
+      begin
+        with TOpenPictureDialog.Create(nil) do
+        try
+          if Execute then
+            ZPL2LabelItem := CreateGraphicField(0, 0, FileName)
+          else
+            exit;
+        finally
+          Free;
+        end;
+      end;
+      9: ZPL2LabelItem := CreateTextField(0, 0, 'Text', 30);
+      10: ZPL2LabelItem := CreateCommentField('Comment');
+    else
+      raise Exception.Create('Unknown index!');
+    end;
+
+    zpl.Items.Add(ZPL2LabelItem);
+	mmoLabelText.Text := zpl.AsString;
+    zpl.GetBitmap(imgLabel.Picture.Bitmap);
+  finally
+    zpl.Free;
+  end;
+end;
+```
