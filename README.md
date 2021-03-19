@@ -7,7 +7,7 @@ Create, edit and preview Zebra ZPL/ZPL2 labels
 1. [PerlRegEx](https://github.com/TheDelphiCoder/PerlRegEx) framework for Delphi versions **older** than Delphi XE,  
 Delphi XE and newer use the build-in RegEx library:
 
-```
+```pascal
 {$if CompilerVersion >= 22.0}
   System.UITypes,
   System.RegularExpressions,
@@ -73,7 +73,7 @@ Used to register the ZPL classes as components in the IDE when used in a package
  
 ## Demo usage
 
-```
+```pascal
 uses
   // [...]
   ZPL2, ZPL2Barcodes, ZPL2Label;
@@ -112,7 +112,7 @@ begin
     end;
 
     zpl.Items.Add(ZPL2LabelItem);
-	mmoLabelText.Text := zpl.AsString;
+    mmoLabelText.Text := zpl.AsString;
     zpl.GetBitmap(imgLabel.Picture.Bitmap);
   finally
     zpl.Free;
